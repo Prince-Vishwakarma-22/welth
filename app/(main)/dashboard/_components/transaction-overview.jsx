@@ -194,4 +194,3 @@ export function DashboardOverview({ accounts, transactions }) {
         </div>
     );
 }
-export { DashboardOverview };
