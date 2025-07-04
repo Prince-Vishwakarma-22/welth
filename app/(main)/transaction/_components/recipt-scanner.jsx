@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import useFetch from "@/hooks/use-fetch";
 import { scanReceipt } from "@/actions/transaction";
+import { compressImage } from "@/lib/compress";
+
 
 export function ReceiptScanner({ onScanComplete }) {
     const fileInputRef = useRef(null);
@@ -21,8 +23,8 @@ export function ReceiptScanner({ onScanComplete }) {
             toast.error("File size should be less than 5MB");
             return;
         }
-
-        await scanReceiptFn(file);
+        const compressed = await compressImage(file);
+        await scanReceiptFn(compressed);
     };
 
     useEffect(() => {
